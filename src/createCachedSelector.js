@@ -1,7 +1,7 @@
 import {createSelector} from 'reselect';
-import FlatObjectCache from './cache/FlatObjectCache';
+import LruObjectCache from './cache/FlatObjectCache';
 
-const defaultCacheCreator = FlatObjectCache;
+const defaultCacheCreator = LruObjectCache;
 const defaultCacheKeyValidator = () => true;
 
 function createCachedSelector(...funcs) {
@@ -24,7 +24,7 @@ function createCachedSelector(...funcs) {
     };
     funcs.push(resultFuncWithRecomputations);
 
-    const cache = options.cacheObject || new defaultCacheCreator();
+    const cache = options.cacheObject || new defaultCacheCreator({ cacheSize: 8 });
     const selectorCreator = options.selectorCreator || createSelector;
     const isValidCacheKey = cache.isValidCacheKey || defaultCacheKeyValidator;
 

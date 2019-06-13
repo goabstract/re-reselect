@@ -1,5 +1,5 @@
 {
-  "name": "re-reselect",
+  "name": "@elasticprojects/re-reselect",
   "version": "3.2.0",
   "description": "Enhance Reselect selectors with deeper memoization and cache management",
   "main": "lib/index.js",
