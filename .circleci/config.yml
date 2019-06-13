@@ -15,7 +15,6 @@ jobs:
             - npm-packages-v2-{{ .Branch }}-{{ checksum "package-lock.json" }}
             - npm-packages-v2-{{ .Branch }}
             - npm-packages-master
-            - npm-packages
       - run:
           name: Install Dependencies
           command: npm install
