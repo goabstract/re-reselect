@@ -29,7 +29,7 @@ function createCachedSelector(...funcs) {
     funcs.push(resultFuncWithRecomputations);
 
     const cache =
-      options.cacheObject || new defaultCacheCreator({cacheSize: 8});
+      options.cacheObject || new defaultCacheCreator({cacheSize: 50});
     const selectorCreator = options.selectorCreator || createSelector;
     const isValidCacheKey = cache.isValidCacheKey || defaultCacheKeyValidator;
 
