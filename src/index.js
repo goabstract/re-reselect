@@ -1,4 +1,5 @@
 import createCachedSelector from './createCachedSelector';
+export {setDefaultCacheCreator} from './createCachedSelector';
 export default createCachedSelector;
 
 export {

@@ -1,8 +1,12 @@
 import {createSelector} from 'reselect';
 import LruObjectCache from './cache/FlatObjectCache';
 
-const defaultCacheCreator = LruObjectCache;
+let defaultCacheCreator = LruObjectCache;
 const defaultCacheKeyValidator = () => true;
+
+export function setDefaultCacheCreator(cacheCreator) {
+  defaultCacheCreator = cacheCreator;
+}
 
 function createCachedSelector(...funcs) {
   return (keySelector, options = {}) => {
@@ -24,7 +28,8 @@ function createCachedSelector(...funcs) {
     };
     funcs.push(resultFuncWithRecomputations);
 
-    const cache = options.cacheObject || new defaultCacheCreator({ cacheSize: 8 });
+    const cache =
+      options.cacheObject || new defaultCacheCreator({cacheSize: 8});
     const selectorCreator = options.selectorCreator || createSelector;
     const isValidCacheKey = cache.isValidCacheKey || defaultCacheKeyValidator;
 
